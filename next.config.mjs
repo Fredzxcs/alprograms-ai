@@ -8,7 +8,7 @@ const nextConfig = {
         headers: [
           {
             key: 'Content-Security-Policy',
-            value: "frame-ancestors 'self' https://alprograms.com https://www.alprograms.com;",
+            value: "frame-ancestors *;", // The asterisk unlocks the iframe for testing!
           },
         ],
       },
