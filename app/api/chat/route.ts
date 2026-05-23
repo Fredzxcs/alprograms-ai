@@ -126,14 +126,11 @@ ${fallbackMessage}`;
 
   // 6. Send the context and the user's question to OpenAI, and stream the answer back
   try {
-    const fs = await import('fs');
-    fs.writeFileSync('server_logs.json', JSON.stringify({ normalizedMessages }));
     const result = await streamText({
       model: openai('gpt-4o-mini'),
       system: systemPrompt,
-      messages: normalizedMessages as never, // cast as never to avoid exact matching mismatch for role literals
+      messages: normalizedMessages as never, 
     });
-    fs.writeFileSync('server_logs.json', JSON.stringify({ normalizedMessages, systemPrompt }));
 
     const r = result as unknown as Record<string, unknown>;
     
