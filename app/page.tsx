@@ -160,7 +160,7 @@ export default function ChatWidget() {
                         a: ({node, ...props}) => <a {...props} target="_blank" rel="noopener noreferrer" />
                       }}
                     >
-                      {m.content || (m as any).text || ((m as any).parts && (m as any).parts.length > 0 ? (m as any).parts.map((p:any) => p.text).join('') : '')}
+                      {(m as any).content || (m as any).text || ((m as any).parts && (m as any).parts.length > 0 ? (m as any).parts.map((p:any) => p.text).join('') : '')}
                     </ReactMarkdown>
                   </div>
                 </div>
