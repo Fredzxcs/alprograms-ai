@@ -1,0 +1,1 @@
+const React = require("react"); const { renderToStaticMarkup } = require("react-dom/server"); const { useChat } = require("@ai-sdk/react"); function App() { const result = useChat(); console.log(result.sendMessage.toString()); return React.createElement("div", null, "hi"); } renderToStaticMarkup(React.createElement(App));

@@ -1,0 +1,181 @@
+# Alprograms - General Knowledge Base & Support Guide
+
+## Corporate Profile, Values & Branding Tone
+* **Overview:** Advanced Learning Programs (ALPs) is a premier Philippine-based training and development provider committed to delivering high-impact, industry-relevant learning experiences. 
+* **Digital Portals:** - **Marketing & Corporate Site:** https://alprograms.com (Used for public scheduling, corporate-onsite requests, and primary marketing).
+  - **Online LMS Portal:** https://learnbyalps.com (Used for active students and course delivery).
+* **Strategic Vision:** To be the recognized leader in providing high-impact learning to companies and individuals for professional growth, career success, and lifelong learning.   
+* **Core Mission:** To engage directly with individuals and businesses to provide quality, highly affordable training that enhances essential business, leadership, and technology skills.   
+* **Core Values:**
+  - **Integrity:** We pride ourselves on being honorable, trustworthy, and credible. Every single commitment we make is one we keep—no exceptions.   
+  - **Collaboration:** We forge interactive partnerships with individuals and companies to build real-world learning experiences that extend far beyond the classroom.   
+  - **Empowerment:** We assist trainees in developing knowledge, skills, and attributes to unlock lifetime career potential.   
+  - **Respect for Diversity:** We cultivate an absolute culture of respect, ensuring the full inclusion of every individual regardless of age, gender, or background.   
+  - **Service to Clients:** We put our clients' success at the center of everything we do, helping them secure career advancement and business growth.   
+  - **Continuous Improvement:** We constantly assess our programs, services, and internal processes to ensure we are always refining and evolving.   
+  - **Customized Training:** We partner closely with organizations, utilizing detailed pre-assessment and post-assessment evaluations to guarantee measurable results.   
+* **Branding Tone & Philosophy:** Our branding identity is Bold, Firm, and Forward. Our programs are designed to be fun, engaging, and collaborative, prioritizing active learning over dry, passive lectures.   
+
+## Master Public Training Classes (Evergreen Overview)
+* **Overview:** ALPs delivers high-impact, open-enrollment public classes designed to resolve immediate skill gaps, prepare professionals for corporate promotions, and build future-proof capabilities.   
+* **Course Offerings:** Public classes regularly cover high-demand professional tracks including Artificial Intelligence, digital business tools, Excel data analysis, leadership development, project management, and essential soft skills.   
+* **Flexible Formats:** Classes are offered in both highly interactive online classrooms and onsite formats delivered directly at prime Makati City hotel venues.
+* **Active Registration Portals:** Because public class dates, schedules, and specific session outlines are dynamically updated throughout the year, users must be routed to the live portals to check active dates and register.
+  - **Live Schedule & Public Registrations:** https://alprograms.com/for-individuals-home/
+  - **All Public Classes Index:** https://alprograms.com/all-public-classes/
+   
+## Core Training Programs & Competencies Directory
+
+### Artificial Intelligence & Digital Tools
+* **AI Tools That Work: From Prompting to Practical Advantage**
+  - **Competencies:** Practical prompt engineering, generative AI tools, and workflow productivity hacks.   
+  - **Core Delivery:** Online class customizable for onsite corporate groups.   
+  - **Official Course Link:** https://alprograms.com/ai-tools-that-work-from-prompting-to-practical-advantage/
+* **AI Fundamentals for Professionals**
+  - **Competencies:** Foundational artificial intelligence concepts, ethical considerations, and business automation.
+  - **Official Course Link:** https://alprograms.com/ai-fundamentals-for-professionals/
+* **AI Prompting for Everyday Business Tasks**
+  - **Competencies:** Everyday automation, text generation, and workflow optimization.
+  - **Official Course Link:** https://alprograms.com/ai-prompting-for-everyday-business-tasks/
+* **Customer Service Excellence in the Age of AI**
+  - **Competencies:** High-tech, high-touch support, customer relationship management, and empathetic AI integration.   
+
+### Data Analysis & Excel
+* **Advanced Excel: Decision Intelligence in the Age of AI**
+  - **Competencies:** Advanced data modeling, intelligence analysis, and predictive analytics.   
+* **Intermediate Excel: Intelligent Data Analysis with AI-Enhanced Insights**
+  - **Competencies:** Data visualization, intermediate formulas, and trend identification.   
+
+### Leadership & Management
+* **Situational Leadership Workshop: Leading with Agility, Influence, and Intent**
+  - **Competencies:** Adaptable leadership styles, task delegation, and team performance management.   
+* **Transformational Leadership for High-Impact Organizations**
+  - **Competencies:** Change management, organizational culture alignment, and vision casting.   
+* **Advanced Coaching Skills for High-Impact Leaders**
+  - **Competencies:** Leading through empathy, performance calibration, and career growth facilitation.   
+  - **Official Course Link:** https://alprograms.com/advanced-coaching-skills-for-high-impact-leaders/
+* **Coaching and Mentoring Training Course**
+  - **Competencies:** High-impact employee feedback loops and developmental coaching frameworks.   
+* **Advanced Train the Trainer Course**
+  - **Competencies:** Modern learning methodologies, adult learning principles, and dynamic corporate facilitation.   
+
+### Project Management
+* **Agile Project Management: Delivering Value in Adaptive, AI-Enabled Environments**
+  - **Competencies:** Scrum frameworks, sprint planning, adaptive project management, and agile delivery.   
+* **Modern Project Management with AI: Traditional, Agile, and Hybrid Approaches**
+  - **Competencies:** AI-enabled resource allocation, project scheduling, and hybrid methodologies.   
+  - **Official Course Link:** https://alprograms.com/modern-project-management-with-ai-traditional-agile-and-hybrid-approaches/?from=public   
+* **Advanced Agile**
+  - **Competencies:** Enterprise agile scaling, executive Scrum facilitation, and structural organizational agility.   
+  - **Official Course Link:** https://alprograms.com/advanced-agile/
+* **Building High Performance Teams Training**
+  - **Competencies:** Building trust, collaborative alignment, and cross-functional performance tracking.
+  - **Official Course Link:** https://alprograms.com/building-high-performance-teams-training/
+
+### Communication, Negotiation & Soft Skills
+* **Driving Results Through Powerful Communication**
+  - **Competencies:** Executive reporting, cross-functional collaboration, and strategic team alignment.   
+* **Effective Negotiation Workshop: The Art of Principled Persuasion**
+  - **Competencies:** Win-win negotiations, objection handling, and solidifying commercial agreements.   
+* **Public Speaking Mastery: Command the Room**
+  - **Competencies:** Verbal articulation, dynamic physical delivery, structural speech formatting, and audience command.
+  - **Official Course Link:** https://alprograms.com/public-speaking-mastery-command-the-room/
+* **Strategic Communication and Influential Command**
+  - **Competencies:** Persuasive speaking, executive presence, and corporate communication strategies.   
+* **Critical Thinking Course**
+  - **Competencies:** Analytical reasoning, strategic problem-solving, and structured decision intelligence.   
+
+### Personal Development & Workplace Wellness
+* **GRIT: The Science of Resilience and High-Stakes Performance**
+  - **Competencies:** Emotional intelligence, stress tolerance, and performance psychology.   
+* **Mastering Workplace Stress Management: Peak Performance Under Pressure**
+  - **Competencies:** High-stress focus techniques, conflict resolution, and personal well-being.   
+* **Strategic Work Attitude and Values Enhancement (WAVE)**
+  - **Competencies:** Self-awareness, professional integrity, organizational values, and workplace productivity.   
+
+## Industry Conferences & Regional Summits (Evergreen Overview)
+* **Event Scope:** These professional conferences bring together human resource executives, chief people officers, compensation specialists, and talent developers to discuss regional upskilling strategies, compensations & benefits, L&D innovation, and human-AI collaboration.   
+* **Featured Forums:** Key events supported by ALPs include the Total Rewards Forum, the ATD Southeast Asia Summit, and the Annual Southeast Asia HR Expo & Symposium.   
+* **Active Registration & Agenda Portal:** Because summit dates, schedules, venues, and keynote topics evolve dynamically year-to-year, users must check active registrations on our live events index page.
+  - **Live Events Index & Registration:** https://alprograms.com/for-individuals-home/
+   
+## Step-by-Step Brochure Download & Corporate Quote Guide
+1. **Navigate to the Target Course Page:** Open the specific course page from the active directory on https://alprograms.com.   
+2. **Locate the Request Form:** Scroll down the page to find the inline form or wait for the "FREE DOWNLOAD" pop-up container to appear.
+3. **Provide Mandatory Professional Details:** Fill out all required fields marked with an asterisk (*):
+   - **Full Name:** Enter your complete professional name.
+   - **Contact Number:** Provide a valid business or mobile phone number.
+   - **Email Address:** Enter a valid corporate or professional email address.
+   - **Company Name:** Specify the name of your organization.
+   - **Job Title:** Input your current professional designation.
+4. **Confirm and Submit:** Tick the security confirmation, then click the "Submit & Download PDF" button.
+5. **Get Instant Access & Quote:** You will receive immediate access to the full course brochure PDF, and our corporate training specialists will follow up with a customized training quote tailored to your organization. You can also manually submit a request via our Request Quotation Page (https://alprograms.com/request-quotation-page/).
+
+## Training Delivery Options & Customization Guide
+* **Online Class Format:** Interactive, virtual live learning rooms delivered by certified corporate facilitators. Perfect for remote, hybrid, or geographically dispersed teams.   
+* **Onsite Class Format:** Instructor-led, in-person workshops delivered directly at your preferred venue, office headquarters, or hotel venues.   
+* **Tailored Custom Training:** ALPs collaborates directly with corporate clients to customize modules according to your specific industry, workflows, and workforce challenges.   
+* **Applied Learning Architecture:** Every custom program includes pre-assessment and post-assessment evaluations. Courses combine simulations, practical projects, and case studies to ensure participants can apply skills in safe-to-fail scenarios.   
+
+## Navigational Pathways by Target Audience
+* **For Individual Professionals (Career Development Pathway):** - **Core Objective:** Bridge immediate skill gaps, prepare for corporate promotions, and acquire future-proof certifications.   
+  - **Action Guide:** Explore the For Individuals Homepage (https://alprograms.com/for-individuals-home/) to view targeted options. Browse specific course tracks via the Individual Courses Page (https://alprograms.com/individuals-courses/) or look through the specialized Digital/AI for Individuals Catalog (https://alprograms.com/digital-ai-for-individuals/).
+* **For Corporate Clients & HR Teams (Enterprise Upskilling Pathway):** - **Core Objective:** Align workforce competencies with business strategy, build confident leaders, and foster team collaboration.   
+  - **Action Guide:** Start at the For Businesses Homepage (https://alprograms.com/for-businesses-home/). Check corporate tracks via the Business Courses Page (https://alprograms.com/business-courses/) or review the Digital/AI for Businesses Portal (https://alprograms.com/digital-ai-for-businesses/). Request group proposals by emailing rhea@alprograms.com.
+* **For Government Agencies (Compliance & Public Sector Pathway):** - **Core Objective:** Deploy compliant, public-sector-aligned competency development workshops.   
+  - **Action Guide:** Visit the For Government Agencies Homepage (https://alprograms.com/for-government-agencies-home/) to see public sector pathways. Browse specialized options on the Government Agencies Courses Page (https://alprograms.com/government-agencies-courses/) or access the Digital/AI for Government Directory (https://alprograms.com/digital-ai-for-government/).
+* **For Active Learners (LMS Learning Portal Pathway):** - **Core Objective:** Log in to continue lessons, complete knowledge assessments, and access certificates.   
+  - **Action Guide:** Navigate directly to our dedicated, secure Learning Management System at https://learnbyalps.com or download the "Learn by ALPs" Mobile App to access your on-demand courses.   
+
+## Step-by-Step On-Demand Video Learning Path
+1. **Access our Public Video Channel:** Open your web browser and go to the official channel at https://youtube.com/@AdvancedLearningPrograms.   
+2. **Select Curated Workshop Previews:** Navigate to our public playlists to find expert-led introductory training courses: 
+   - Administrative Assistants Workshop    
+   - 7 Habits of Highly Effective People    
+   - Effective Communication Skills Workshop    
+3. **Engage in Self-Paced Learning:** Watch these interactive on-demand sessions to gain initial concepts and strategies before enrolling in fully certified programs.   
+
+## Enterprise Sectors & Partner Directory
+* **Overview:** ALPs has an established network of 65 verified training partners across 11 categories and industry sectors in the Philippines, verifying our capability to deliver high-quality, practical training. 
+* **Sector Partners:** Government Agencies, Construction & Real Estate, Financial & Professional Services, Manufacturing & Electronics, Information Technology, Healthcare & Pharmaceutical, Retail & E-commerce, Energy & Utility Services, Food Business, Advertising & Marketing, and other specialized fields.
+* **Segmented Partner Landing Pages:**
+  - **Public Training Partners:** https://alprograms.com/training-partners/?from=public
+  - **Corporate/Business Training Partners:** https://alprograms.com/training-partners/?from_tab=business
+  - **Government Training Partners:** https://alprograms.com/training-partners/?from_tab=government
+
+## Alprograms Platform Links Quick Directory
+
+### For Individuals Pathway
+1. **For Individuals Homepage:** https://alprograms.com/for-individuals-home/
+2. **Public Classes Directory:** https://alprograms.com/all-public-classes/
+3. **Our Courses (Individuals):** https://alprograms.com/individuals-courses/
+4. **Digital & AI Tracks (Individuals):** https://alprograms.com/digital-ai-for-individuals/
+5. **Training Partners (Public):** https://alprograms.com/training-partners/?from=public
+
+### For Businesses Pathway
+1. **For Businesses Homepage:** https://alprograms.com/for-businesses-home/
+2. **Our Courses (Business):** https://alprograms.com/business-courses/
+3. **Digital & AI Tracks (Business):** https://alprograms.com/digital-ai-for-businesses/
+4. **Training Partners (Business):** https://alprograms.com/training-partners/?from_tab=business
+
+### For Government Agencies Pathway
+1. **For Government Agencies Homepage:** https://alprograms.com/for-government-agencies-home/
+2. **Our Courses (Government):** https://alprograms.com/government-agencies-courses/
+3. **Digital & AI Tracks (Government):** https://alprograms.com/digital-ai-for-government/
+4. **Training Partners (Government):** https://alprograms.com/training-partners/?from_tab=government
+
+### Administrative & Legal Footer Links
+1. **About Us Page:** https://alprograms.com/about-us/
+2. **Contact Us Form:** https://alprograms.com/contact-us/
+3. **Request Quotation Form:** https://alprograms.com/request-quotation-page/
+4. **Terms and Conditions:** https://alprograms.com/terms-and-conditions/
+5. **Privacy Policy:** https://alprograms.com/privacy-policy/
+
+## Support & Contact Quick Directory
+* **Office Headquarters Address:** 2nd Floor Zeta Building Unit 25D, 191 Salcedo St, Legaspi Village, Makati City, Philippines 1229.   
+* **Core Landline Hotline:** (02) 7-902-0992    
+* **Mobile & WhatsApp Support:** (+63) 917 1239204 (Primary Contact: Rhea)    
+* **Alternative Mobile Hotlines:** (+63) 917 6247037 or (+63) 917 8034085    
+* **Core Email Addresses:**
+  - **Support Team Email:** support@alprograms.com    
+  - **Corporate Partnerships & Proposals:** rhea@alprograms.com
