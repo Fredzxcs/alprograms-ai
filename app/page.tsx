@@ -158,7 +158,18 @@ export default function ChatWidget() {
           0%, 80%, 100% { transform: scale(0); }
           40% { transform: scale(1); }
         }
+        
+        /* RESTORED: Beautiful Markdown Spacing */
+        .markdown-prose { font-family: system-ui, -apple-system, sans-serif; }
+        .markdown-prose p { margin: 0 0 12px 0; line-height: 1.5; }
+        .markdown-prose p:last-child { margin: 0; }
+        .markdown-prose ul { margin: 0 0 12px 0; padding-left: 20px; list-style-type: disc; }
+        .markdown-prose ol { margin: 0 0 12px 0; padding-left: 20px; list-style-type: decimal; }
+        .markdown-prose li { margin-bottom: 6px; line-height: 1.5; }
+        .markdown-prose strong { font-weight: 700; }
+        .markdown-prose a { text-decoration: underline; text-underline-offset: 2px; }
       ` }} />
     </div>
   );
 }
+
