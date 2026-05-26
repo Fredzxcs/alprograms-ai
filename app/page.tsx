@@ -8,6 +8,7 @@ export default function ChatWidget() {
   const [input, setInput] = useState('');
   const [isEnlarged, setIsEnlarged] = useState(false);
   const [showIdlePrompt, setShowIdlePrompt] = useState(false);
+  const [showClearConfirm, setShowClearConfirm] = useState(false);
   const { messages, setMessages, sendMessage, status, error } = useChat({});
   const isLoading = status === 'submitted' || status === 'streaming';
   const messagesEndRef = useRef<HTMLDivElement>(null);
@@ -45,9 +46,12 @@ export default function ChatWidget() {
   };
 
   const clearChat = () => {
-    if (window.confirm("Are you sure you want to clear the conversation history?")) {
-      setMessages([]);
-    }
+    setShowClearConfirm(true);
+  };
+
+  const confirmClearChat = () => {
+    setMessages([]);
+    setShowClearConfirm(false);
   };
 
   const toggleEnlarge = () => {
@@ -250,6 +254,24 @@ export default function ChatWidget() {
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
         </button>
       </form>
+
+      {/* Custom Clear Confirmation Modal */}
+      {showClearConfirm && (
+        <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, backgroundColor: 'rgba(0,0,0,0.4)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 100 }}>
+          <div style={{ backgroundColor: 'white', padding: '24px', borderRadius: '16px', width: '80%', maxWidth: '320px', boxShadow: '0 10px 25px rgba(0,0,0,0.2)', textAlign: 'center' }}>
+            <h3 style={{ margin: '0 0 12px 0', fontSize: '18px', color: '#111827' }}>Clear History?</h3>
+            <p style={{ margin: '0 0 20px 0', fontSize: '14px', color: '#4b5563' }}>Are you sure you want to clear the conversation history?</p>
+            <div style={{ display: 'flex', gap: '12px', justifyContent: 'center' }}>
+              <button onClick={() => setShowClearConfirm(false)} style={{ padding: '8px 16px', borderRadius: '8px', border: '1px solid #d1d5db', backgroundColor: 'white', color: '#374151', cursor: 'pointer', fontSize: '14px', fontWeight: '500', flex: 1 }}>
+                Cancel
+              </button>
+              <button onClick={confirmClearChat} style={{ padding: '8px 16px', borderRadius: '8px', border: 'none', backgroundColor: '#ef4444', color: 'white', cursor: 'pointer', fontSize: '14px', fontWeight: '500', flex: 1 }}>
+                Clear
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
       <style dangerouslySetInnerHTML={{ __html: `
         @keyframes bounce {
