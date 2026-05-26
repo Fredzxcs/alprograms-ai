@@ -6,9 +6,32 @@ import remarkGfm from 'remark-gfm';
 
 export default function ChatWidget() {
   const [input, setInput] = useState('');
+  const [isEnlarged, setIsEnlarged] = useState(false);
+  const [showIdlePrompt, setShowIdlePrompt] = useState(false);
   const { messages, setMessages, sendMessage, status, error } = useChat({});
   const isLoading = status === 'submitted' || status === 'streaming';
   const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  const CACHE_KEY = "yetti_chat_history";
+  const CACHE_EXPIRY = 24 * 60 * 60 * 1000;
+
+  // Load chat history from localStorage on mount
+  useEffect(() => {
+    window.parent.postMessage('yetti-ready', '*');
+    try {
+      const cached = localStorage.getItem(CACHE_KEY);
+      if (cached) {
+        const { timestamp, data } = JSON.parse(cached);
+        if (Date.now() - timestamp < CACHE_EXPIRY) {
+          setMessages(data);
+        } else {
+          localStorage.removeItem(CACHE_KEY);
+        }
+      }
+    } catch (e) {
+      console.error('Error loading history:', e);
+    }
+  }, [setMessages]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInput(e.target.value);
@@ -21,9 +44,48 @@ export default function ChatWidget() {
     setInput('');
   };
 
+  const clearChat = () => {
+    if (window.confirm("Are you sure you want to clear the conversation history?")) {
+      setMessages([]);
+    }
+  };
+
+  const toggleEnlarge = () => {
+    const newState = !isEnlarged;
+    setIsEnlarged(newState);
+    window.parent.postMessage(newState ? 'maximize-yetti' : 'restore-yetti', '*');
+  };
+
+  // Save to localStorage whenever messages change, and manage 1-min idle prompt
   useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    let timeout: NodeJS.Timeout;
+    
+    if (messages.length > 0) {
+      localStorage.setItem(CACHE_KEY, JSON.stringify({ timestamp: Date.now(), data: messages }));
+      setShowIdlePrompt(false);
+      
+      const lastMsg = messages[messages.length - 1];
+      if (lastMsg.role === 'assistant') {
+        timeout = setTimeout(() => {
+          setShowIdlePrompt(true);
+        }, 60000); // 1 minute
+      }
+    } else {
+      localStorage.removeItem(CACHE_KEY);
+      setShowIdlePrompt(false);
+    }
+    
+    return () => clearTimeout(timeout);
   }, [messages]);
+
+  useEffect(() => {
+    // Avoid 'behavior: smooth' which causes dizzying jumps during AI stream updates
+    messagesEndRef.current?.scrollIntoView({ behavior: 'auto' });
+  }, [messages, showIdlePrompt]);
+
+  // Adjust font size dynamically based on maximize state
+  const baseFontSize = isEnlarged ? '16px' : '14px';
+  const headerFontSize = isEnlarged ? '24px' : '20px';
 
   return (
     <div style={{ width: '100vw', height: '100vh', backgroundColor: '#f8f9fa', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
@@ -42,9 +104,23 @@ export default function ChatWidget() {
             AI Engine
           </div>
           <div style={{ marginLeft: 'auto', display: 'flex', gap: '12px', zIndex: 1, alignItems: 'center' }}>
+            {/* Maximize / Enlarge Button */}
+            <button 
+              onClick={toggleEnlarge} 
+              title={isEnlarged ? "Restore Size" : "Enlarge Chat"}
+              style={{ background: 'transparent', border: 'none', color: 'rgba(255,255,255,0.8)', cursor: 'pointer', display: 'flex', padding: 0 }}
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                {isEnlarged ? (
+                  <><polyline points="4 14 10 14 10 20"></polyline><polyline points="20 10 14 10 14 4"></polyline><line x1="14" y1="10" x2="21" y2="3"></line><line x1="3" y1="21" x2="10" y2="14"></line></>
+                ) : (
+                  <><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></>
+                )}
+              </svg>
+            </button>
             {messages.length > 0 && (
               <button 
-                onClick={() => setMessages([])} 
+                onClick={clearChat} 
                 title="Clear Chat"
                 style={{ background: 'transparent', border: 'none', color: 'rgba(255,255,255,0.8)', cursor: 'pointer', display: 'flex', padding: 0 }}
               >
@@ -68,8 +144,8 @@ export default function ChatWidget() {
             <img src="/yetti.png" alt="Yetti AI" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
           </div>
           <div>
-            <div style={{ fontSize: '13px', color: 'rgba(255,255,255,0.9)', marginBottom: '2px' }}>Discuss with</div>
-            <div style={{ fontSize: '20px', fontWeight: 'bold', lineHeight: '1.1' }}>Yetti Assistant</div>
+            <div style={{ fontSize: isEnlarged ? '15px' : '13px', color: 'rgba(255,255,255,0.9)', marginBottom: '2px' }}>Discuss with</div>
+            <div style={{ fontSize: headerFontSize, fontWeight: 'bold', lineHeight: '1.1' }}>Yetti Assistant</div>
           </div>
         </div>
       </div>
@@ -77,20 +153,20 @@ export default function ChatWidget() {
       <div style={{ flex: 1, overflowY: 'auto', padding: '20px', backgroundColor: '#f8f9fa', display: 'flex', flexDirection: 'column', gap: '16px' }}>
         {messages.length === 0 && (
           <div style={{ borderRadius: '16px', backgroundColor: 'white', padding: '18px', border: '1px solid #e5e7eb', boxShadow: '0 4px 12px rgba(15, 23, 42, 0.03)' }}>
-            <div style={{ fontSize: '14px', color: '#111827', marginBottom: '12px' }}>
+            <div style={{ fontSize: baseFontSize, color: '#111827', marginBottom: '12px' }}>
               Hi! I am Yetti the Assistant! 🐾 I can help you find the right corporate training program or professional development courses.
             </div>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, minmax(0, 1fr))', gap: '10px' }}>
-              <button type="button" onClick={() => sendMessage({ content: 'What courses do you offer?', role: 'user' } as any)} style={{ padding: '10px 12px', borderRadius: '12px', border: '1px solid #e2e8f0', background: 'white', color: '#1f2937', cursor: 'pointer', textAlign: 'left', fontSize: '13px', transition: 'all 0.2s', boxShadow: '0 1px 2px rgba(0,0,0,0.02)' }} onMouseOver={(e) => { e.currentTarget.style.backgroundColor = '#f1f5f9'; e.currentTarget.style.borderColor = '#cbd5e1'; e.currentTarget.style.transform = 'translateY(-1px)'; }} onMouseOut={(e) => { e.currentTarget.style.backgroundColor = 'white'; e.currentTarget.style.borderColor = '#e2e8f0'; e.currentTarget.style.transform = 'translateY(0)'; }}>
+              <button type="button" onClick={() => sendMessage({ content: 'What courses do you offer?', role: 'user' } as any)} style={{ padding: '10px 12px', borderRadius: '12px', border: '1px solid #e2e8f0', background: 'white', color: '#1f2937', cursor: 'pointer', textAlign: 'left', fontSize: baseFontSize, transition: 'all 0.2s', boxShadow: '0 1px 2px rgba(0,0,0,0.02)' }} onMouseOver={(e) => { e.currentTarget.style.backgroundColor = '#f1f5f9'; e.currentTarget.style.borderColor = '#cbd5e1'; e.currentTarget.style.transform = 'translateY(-1px)'; }} onMouseOut={(e) => { e.currentTarget.style.backgroundColor = 'white'; e.currentTarget.style.borderColor = '#e2e8f0'; e.currentTarget.style.transform = 'translateY(0)'; }}>
                 📖 Find a Course
               </button>
-              <button type="button" onClick={() => sendMessage({ content: 'How do I request a corporate training quote?', role: 'user' } as any)} style={{ padding: '10px 12px', borderRadius: '12px', border: '1px solid #e2e8f0', background: 'white', color: '#1f2937', cursor: 'pointer', textAlign: 'left', fontSize: '13px', transition: 'all 0.2s', boxShadow: '0 1px 2px rgba(0,0,0,0.02)' }} onMouseOver={(e) => { e.currentTarget.style.backgroundColor = '#f1f5f9'; e.currentTarget.style.borderColor = '#cbd5e1'; e.currentTarget.style.transform = 'translateY(-1px)'; }} onMouseOut={(e) => { e.currentTarget.style.backgroundColor = 'white'; e.currentTarget.style.borderColor = '#e2e8f0'; e.currentTarget.style.transform = 'translateY(0)'; }}>
+              <button type="button" onClick={() => sendMessage({ content: 'How do I request a corporate training quote?', role: 'user' } as any)} style={{ padding: '10px 12px', borderRadius: '12px', border: '1px solid #e2e8f0', background: 'white', color: '#1f2937', cursor: 'pointer', textAlign: 'left', fontSize: baseFontSize, transition: 'all 0.2s', boxShadow: '0 1px 2px rgba(0,0,0,0.02)' }} onMouseOver={(e) => { e.currentTarget.style.backgroundColor = '#f1f5f9'; e.currentTarget.style.borderColor = '#cbd5e1'; e.currentTarget.style.transform = 'translateY(-1px)'; }} onMouseOut={(e) => { e.currentTarget.style.backgroundColor = 'white'; e.currentTarget.style.borderColor = '#e2e8f0'; e.currentTarget.style.transform = 'translateY(0)'; }}>
                 💼 Request a Quote
               </button>
-              <button type="button" onClick={() => sendMessage({ content: 'How can I log in to my courses?', role: 'user' } as any)} style={{ padding: '10px 12px', borderRadius: '12px', border: '1px solid #e2e8f0', background: 'white', color: '#1f2937', cursor: 'pointer', textAlign: 'left', fontSize: '13px', transition: 'all 0.2s', boxShadow: '0 1px 2px rgba(0,0,0,0.02)' }} onMouseOver={(e) => { e.currentTarget.style.backgroundColor = '#f1f5f9'; e.currentTarget.style.borderColor = '#cbd5e1'; e.currentTarget.style.transform = 'translateY(-1px)'; }} onMouseOut={(e) => { e.currentTarget.style.backgroundColor = 'white'; e.currentTarget.style.borderColor = '#e2e8f0'; e.currentTarget.style.transform = 'translateY(0)'; }}>
+              <button type="button" onClick={() => sendMessage({ content: 'How can I log in to my courses?', role: 'user' } as any)} style={{ padding: '10px 12px', borderRadius: '12px', border: '1px solid #e2e8f0', background: 'white', color: '#1f2937', cursor: 'pointer', textAlign: 'left', fontSize: baseFontSize, transition: 'all 0.2s', boxShadow: '0 1px 2px rgba(0,0,0,0.02)' }} onMouseOver={(e) => { e.currentTarget.style.backgroundColor = '#f1f5f9'; e.currentTarget.style.borderColor = '#cbd5e1'; e.currentTarget.style.transform = 'translateY(-1px)'; }} onMouseOut={(e) => { e.currentTarget.style.backgroundColor = 'white'; e.currentTarget.style.borderColor = '#e2e8f0'; e.currentTarget.style.transform = 'translateY(0)'; }}>
                 💻 Access LMS
               </button>
-              <button type="button" onClick={() => sendMessage({ content: 'How can I download a course brochure?', role: 'user' } as any)} style={{ padding: '10px 12px', borderRadius: '12px', border: '1px solid #e2e8f0', background: 'white', color: '#1f2937', cursor: 'pointer', textAlign: 'left', fontSize: '13px', transition: 'all 0.2s', boxShadow: '0 1px 2px rgba(0,0,0,0.02)' }} onMouseOver={(e) => { e.currentTarget.style.backgroundColor = '#f1f5f9'; e.currentTarget.style.borderColor = '#cbd5e1'; e.currentTarget.style.transform = 'translateY(-1px)'; }} onMouseOut={(e) => { e.currentTarget.style.backgroundColor = 'white'; e.currentTarget.style.borderColor = '#e2e8f0'; e.currentTarget.style.transform = 'translateY(0)'; }}>
+              <button type="button" onClick={() => sendMessage({ content: 'How can I download a course brochure?', role: 'user' } as any)} style={{ padding: '10px 12px', borderRadius: '12px', border: '1px solid #e2e8f0', background: 'white', color: '#1f2937', cursor: 'pointer', textAlign: 'left', fontSize: baseFontSize, transition: 'all 0.2s', boxShadow: '0 1px 2px rgba(0,0,0,0.02)' }} onMouseOver={(e) => { e.currentTarget.style.backgroundColor = '#f1f5f9'; e.currentTarget.style.borderColor = '#cbd5e1'; e.currentTarget.style.transform = 'translateY(-1px)'; }} onMouseOut={(e) => { e.currentTarget.style.backgroundColor = 'white'; e.currentTarget.style.borderColor = '#e2e8f0'; e.currentTarget.style.transform = 'translateY(0)'; }}>
                 📥 Get Brochure
               </button>
             </div>
@@ -99,7 +175,7 @@ export default function ChatWidget() {
 
         {messages.map((m) => (
           <div key={m.id} style={{ display: 'flex', justifyContent: m.role === 'user' ? 'flex-end' : 'flex-start' }}>
-            <div style={{ maxWidth: '85%', padding: '14px 16px', borderRadius: '18px', backgroundColor: m.role === 'user' ? '#5b83ea' : 'white', color: m.role === 'user' ? 'white' : '#111827', border: m.role === 'assistant' ? '1px solid #e5e7eb' : 'none', fontSize: '14px', boxShadow: '0 2px 5px rgba(0,0,0,0.02)' }}>
+            <div style={{ maxWidth: '85%', padding: '14px 16px', borderRadius: '18px', backgroundColor: m.role === 'user' ? '#5b83ea' : 'white', color: m.role === 'user' ? 'white' : '#111827', border: m.role === 'assistant' ? '1px solid #e5e7eb' : 'none', fontSize: baseFontSize, boxShadow: '0 2px 5px rgba(0,0,0,0.02)' }}>
               <div className="markdown-prose">
                 <ReactMarkdown
                   remarkPlugins={[remarkGfm]}
@@ -120,6 +196,28 @@ export default function ChatWidget() {
               <span style={{ width: '6px', height: '6px', borderRadius: '50%', backgroundColor: '#5b83ea', animation: 'bounce 1.4s infinite ease-in-out both' }}></span>
               <span style={{ width: '6px', height: '6px', borderRadius: '50%', backgroundColor: '#5b83ea', animation: 'bounce 1.4s infinite ease-in-out both', animationDelay: '0.15s' }}></span>
               <span style={{ width: '6px', height: '6px', borderRadius: '50%', backgroundColor: '#5b83ea', animation: 'bounce 1.4s infinite ease-in-out both', animationDelay: '0.3s' }}></span>
+            </div>
+          </div>
+        )}
+
+        {showIdlePrompt && !isLoading && (
+          <div style={{ borderRadius: '16px', backgroundColor: 'white', padding: '18px', border: '1px solid #e5e7eb', boxShadow: '0 4px 12px rgba(15, 23, 42, 0.03)', marginTop: '8px' }}>
+            <div style={{ fontSize: baseFontSize, color: '#111827', marginBottom: '12px', fontWeight: 'bold' }}>
+              Is there anything else I can help you with?
+            </div>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, minmax(0, 1fr))', gap: '10px' }}>
+              <button type="button" onClick={() => { setShowIdlePrompt(false); sendMessage({ content: 'What courses do you offer?', role: 'user' } as any); }} style={{ padding: '10px 12px', borderRadius: '12px', border: '1px solid #e2e8f0', background: 'white', color: '#1f2937', cursor: 'pointer', textAlign: 'left', fontSize: baseFontSize, transition: 'all 0.2s', boxShadow: '0 1px 2px rgba(0,0,0,0.02)' }} onMouseOver={(e) => { e.currentTarget.style.backgroundColor = '#f1f5f9'; e.currentTarget.style.borderColor = '#cbd5e1'; e.currentTarget.style.transform = 'translateY(-1px)'; }} onMouseOut={(e) => { e.currentTarget.style.backgroundColor = 'white'; e.currentTarget.style.borderColor = '#e2e8f0'; e.currentTarget.style.transform = 'translateY(0)'; }}>
+                📖 Find a Course
+              </button>
+              <button type="button" onClick={() => { setShowIdlePrompt(false); sendMessage({ content: 'How do I request a corporate training quote?', role: 'user' } as any); }} style={{ padding: '10px 12px', borderRadius: '12px', border: '1px solid #e2e8f0', background: 'white', color: '#1f2937', cursor: 'pointer', textAlign: 'left', fontSize: baseFontSize, transition: 'all 0.2s', boxShadow: '0 1px 2px rgba(0,0,0,0.02)' }} onMouseOver={(e) => { e.currentTarget.style.backgroundColor = '#f1f5f9'; e.currentTarget.style.borderColor = '#cbd5e1'; e.currentTarget.style.transform = 'translateY(-1px)'; }} onMouseOut={(e) => { e.currentTarget.style.backgroundColor = 'white'; e.currentTarget.style.borderColor = '#e2e8f0'; e.currentTarget.style.transform = 'translateY(0)'; }}>
+                💼 Request a Quote
+              </button>
+              <button type="button" onClick={() => { setShowIdlePrompt(false); sendMessage({ content: 'How can I log in to my courses?', role: 'user' } as any); }} style={{ padding: '10px 12px', borderRadius: '12px', border: '1px solid #e2e8f0', background: 'white', color: '#1f2937', cursor: 'pointer', textAlign: 'left', fontSize: baseFontSize, transition: 'all 0.2s', boxShadow: '0 1px 2px rgba(0,0,0,0.02)' }} onMouseOver={(e) => { e.currentTarget.style.backgroundColor = '#f1f5f9'; e.currentTarget.style.borderColor = '#cbd5e1'; e.currentTarget.style.transform = 'translateY(-1px)'; }} onMouseOut={(e) => { e.currentTarget.style.backgroundColor = 'white'; e.currentTarget.style.borderColor = '#e2e8f0'; e.currentTarget.style.transform = 'translateY(0)'; }}>
+                💻 Access LMS
+              </button>
+              <button type="button" onClick={() => { setShowIdlePrompt(false); sendMessage({ content: 'How can I download a course brochure?', role: 'user' } as any); }} style={{ padding: '10px 12px', borderRadius: '12px', border: '1px solid #e2e8f0', background: 'white', color: '#1f2937', cursor: 'pointer', textAlign: 'left', fontSize: baseFontSize, transition: 'all 0.2s', boxShadow: '0 1px 2px rgba(0,0,0,0.02)' }} onMouseOver={(e) => { e.currentTarget.style.backgroundColor = '#f1f5f9'; e.currentTarget.style.borderColor = '#cbd5e1'; e.currentTarget.style.transform = 'translateY(-1px)'; }} onMouseOut={(e) => { e.currentTarget.style.backgroundColor = 'white'; e.currentTarget.style.borderColor = '#e2e8f0'; e.currentTarget.style.transform = 'translateY(0)'; }}>
+                📥 Get Brochure
+              </button>
             </div>
           </div>
         )}
