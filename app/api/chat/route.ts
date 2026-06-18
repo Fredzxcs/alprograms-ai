@@ -6,7 +6,7 @@ import { Pinecone } from '@pinecone-database/pinecone';
 const rateLimitMap = new Map<string, number[]>();
 const RATE_LIMIT_WINDOW = 60 * 1000; // 1 minute window
 const MAX_REQUESTS = 10; // Max 10 messages per minute
-export const runtime = 'edge';
+
 
 export async function POST(req: Request) {
   // --- PRODUCTION SECURITY: Rate Limiting ---
