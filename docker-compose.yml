@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  chatbot-1:
+    build: .
+    container_name: alprograms-ai
+    restart: always
+    ports:
+      - "3001:3000"   # Maps VPS port 3001 to internal bot port 3000
+    environment:
+      - NODE_ENV=production
+      # Add any environment variables your chatbot needs below:
+      # - OPENAI_API_KEY=your_key_here
